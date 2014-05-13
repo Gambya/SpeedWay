@@ -16,6 +16,9 @@ public class StartCorrida extends JFrame implements Runnable{
 		private BufferedImage backBuffer;
 		private ImageIcon fundo;
 		private Graphics g;
+		public Thread tStartCorrida;
+		private boolean flag;
+		
 	public StartCorrida(){
 		this.FPS = 30;
 		this.janela = Toolkit.getDefaultToolkit().getScreenSize();
@@ -34,14 +37,16 @@ public class StartCorrida extends JFrame implements Runnable{
 		this.fundo = new ImageIcon("src/assets/img/telaPista.png"); // Instanciando a imagem do fundo
 		this.g = this.getGraphics(); // Pegando o Graphics para desenhar
 		
+		this.flag = false;
+		
 		this.desenhar();
 	}
 	@Override
 	public void run() {
-		while(true){
+		while(!this.flag){
 			this.desenhar();
 			try{
-				Thread.sleep(1000/this.FPS);
+				this.tStartCorrida.sleep(1000/this.FPS);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -51,7 +56,7 @@ public class StartCorrida extends JFrame implements Runnable{
 	public void desenhar(){
 		// Printando fundo
 		Graphics bbg = backBuffer.getGraphics(); 
-		bbg.drawImage(this.fundo.getImage(),0,0,this); // Desenha o fundo no backBuffer
+		bbg.drawImage(this.fundo.getImage(),0,0,this.janela.getSize().width,this.janela.getSize().height,this); // Desenha o fundo no backBuffer
 		
 		
 		// O desenho do backBuffer deve ser desenhado depois de tudo

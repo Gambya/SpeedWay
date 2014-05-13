@@ -5,9 +5,6 @@ public class Tempo {
 	private int temperatura;
 	private int qtdAguaPista;
 	
-	public Tempo(){
-		
-	}
 	public int getTemperatura() {
 		return temperatura;
 	}

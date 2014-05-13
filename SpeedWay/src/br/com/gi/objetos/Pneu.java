@@ -4,6 +4,14 @@ public class Pneu {
 	private String modelo;
 	private int durabilidade;
 	private double indice;
+	private double valor;
+	
+	public double getValor() {
+		return valor;
+	}
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
 	public String getModelo() {
 		return modelo;
 	}

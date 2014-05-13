@@ -20,7 +20,9 @@ public class Game extends JFrame implements KeyListener,Runnable {
 	private ImageIcon logo;
 	private Menu menu;
 	private Graphics g;
-		
+	public Thread tGame;
+	private boolean flag;
+	
 	public Game(){
 		this.FPS = 30;
 		this.janela = Toolkit.getDefaultToolkit().getScreenSize();
@@ -46,12 +48,13 @@ public class Game extends JFrame implements KeyListener,Runnable {
 		this.addKeyListener(this); // Escutando o teclado
 		
 		// Aqui definimos os textos dos menus
-		this.menu.itens.add("Start Game");
+		this.menu.itens.add("Iniciar jogo");
 		this.menu.itens.add("Créditos");
-		this.menu.itens.add("Sair do Game");
+		this.menu.itens.add("Sair");//feito por giva.
 		
 		this.menu.setBbg(backBuffer.getGraphics());
 		
+		this.flag = false;
 		// Chamar methodo desenhar
 		this.desenhar();
 	}
@@ -74,14 +77,7 @@ public class Game extends JFrame implements KeyListener,Runnable {
 	
 	public void scenes(){
 		if(this.menu.getCenario() == 0){
-			try {
-				this.play();
-				Thread.sleep(20000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} catch (Throwable e){
-				e.printStackTrace();
-			}
+			this.play();
 		}else if(this.menu.getCenario() == 1){
 			this.creditos();
 		}else if(this.menu.getCenario() == 2){
@@ -94,18 +90,19 @@ public class Game extends JFrame implements KeyListener,Runnable {
 		
 	}
 
-	private void play() throws Throwable {
+	private void play() {
+		this.flag = true;
+		this.tGame.interrupt();
 		Garagem garagem = new Garagem();
-		this.finalize();
 		this.dispose();
 	}
 
 	@Override
 	public void run() {
-		while(true){
+		while(!this.flag){
 			this.desenhar();
 			try{
-				Thread.sleep(1000/this.FPS);
+				this.tGame.sleep(1000/this.FPS);
 			}catch(Exception e){
 				e.printStackTrace();
 			}

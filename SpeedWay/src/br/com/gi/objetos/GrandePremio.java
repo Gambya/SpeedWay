@@ -7,16 +7,18 @@ public class GrandePremio {
 	private Pista pista;
 	public ArrayList<Carro> carros;
 	private Tempo tempo;
-	
-	public GrandePremio(Pista pista){
-		this.setPista(pista);
-		this.selecionarTempo();
-		this.selecionarCarros();
+
+	public GrandePremio(){
+		tempo = new Tempo();
+		pista = new Pista();
 	}
-	
 	private void selecionarCarros() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public Tempo getTempo() {
+		return tempo;
 	}
 
 	public Pista getPista() {
@@ -26,10 +28,9 @@ public class GrandePremio {
 		this.pista = pista;
 	}
 	
-	private Tempo selecionarTempo(){
+	public void selecionarTempo(){
 		this.selecionarTemp();
 		this.selecionarQtdAgua();
-		return this.tempo;
 	}
 	private void selecionarQtdAgua() {
 		Random chuvendo = new Random();
@@ -46,13 +47,16 @@ public class GrandePremio {
 		
 		if(indice <= 3){
 			Random temp = new Random();
-			this.tempo.setTemperatura((temp.nextInt(10))+10);
+			int temporario = temp.nextInt(10)+10;
+			this.tempo.setTemperatura(temporario);
 		}else if(indice >= 4 && indice <= 6){
 			Random temp = new Random();
-			this.tempo.setTemperatura((temp.nextInt(10))+20);
+			int temporario = temp.nextInt(10)+20;
+			this.tempo.setTemperatura(temporario);
 		}else{
 			Random temp = new Random();
-			this.tempo.setTemperatura((temp.nextInt(10))+30);
+			int temporario = temp.nextInt(10)+30;
+			this.tempo.setTemperatura(temporario);
 		}
 	}
 }

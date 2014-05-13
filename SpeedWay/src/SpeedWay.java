@@ -20,7 +20,7 @@ public class SpeedWay{
 	
 	public static void main(String[] args) {
 		Game game = new Game();
-		Thread tGame = new Thread(game);
-		tGame.start();
+		game.tGame = new Thread(game);
+		game.tGame.start();
 	}
 }

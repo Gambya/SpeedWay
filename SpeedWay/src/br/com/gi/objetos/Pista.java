@@ -1,5 +1,6 @@
 package br.com.gi.objetos;
 
+
 public class Pista {
 	private String Nome;
 	private Pneu pneuPista;
@@ -11,7 +12,14 @@ public class Pista {
 	private Cambio cambio;
 	private Suspensao suspensao;
 	private Freio freio;
+	private String ImgPista;
 	
+	public String getImgPista() {
+		return ImgPista;
+	}
+	public void setImgPista(String img) {
+		ImgPista = img;
+	}
 	public Cambio getCambio() {
 		return cambio;
 	}
